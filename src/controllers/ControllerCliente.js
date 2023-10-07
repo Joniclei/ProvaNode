@@ -11,7 +11,7 @@ class ControllerClientePetShop {
 
         const cliente = await serviceCliente.PegarUmCliente(req.params.id);
         res.status(200).json({
-          aquiqualquercoisacliente : cliente
+          consulta : cliente
         });
 
       } catch (error) {
@@ -27,7 +27,7 @@ class ControllerClientePetShop {
 
         const cliente = await serviceCliente.PegarTodosClientes();
         res.status(200).json({
-          aquiqualquercoisacliente : cliente
+          consulta : cliente
         });
 
       } catch (error) {

@@ -8,9 +8,12 @@ class ControllerAtendimento {
   //
   async GetAtendimento(req, res) {
     try {
-      const resultUmAtendimento = await service.PegarUmCachorro(req.params.id);
+      const resultUmAtendimento = await service.GetAtendimento(req.params.id);
+      const resultCachorro = await serviceCachorro.PegarUmCachorro(req.params.id);
       res.status(200).json({
-        aquiequalquercoisa: resultUmAtendimento, //
+        Consulta: resultUmAtendimento,
+        Cachorro: resultCachorro.nome,
+         //
       });
     }
     catch (error) {
@@ -21,10 +24,10 @@ class ControllerAtendimento {
 
   async GelAllAtendimento(req, res) {
     try {
-      console.log('Controller: PegarTodosOsCachorros');
-      const resultTodosAtendimentos = await service.PegarTodosCachorros();
+      console.log('Controller: Pegar Todos os Atendimento');
+      const resultTodosAtendimentos = await service.GetAllAtendimento();
       res.status(200).json({
-        aquiequalquercoisa: resultTodosAtendimentos,
+        Consulta: resultTodosAtendimentos,
       });
 
     }
@@ -59,7 +62,7 @@ class ControllerAtendimento {
       const id = req.params.id;
       await service.PutAtendimento(atendimento, id);
       res.status(200).json({
-        message: 'Cachorro Atualizado com sucesso!'
+        message: 'Atendimento Atualizado com sucesso!'
 
       });
 
@@ -75,7 +78,7 @@ class ControllerAtendimento {
       const id = req.params.id;
       await service.DeleteAtendimento(id);
       res.status(200).json({
-        message: 'Cachorro Deletado com sucesso!'
+        message: 'Atendimento Deletado com sucesso!'
 
       });
 
